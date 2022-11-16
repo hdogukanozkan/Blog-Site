@@ -3,7 +3,7 @@ import Blog from "./Blog";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 function Blogs({ blogs, search }) {
-  const [parent] = useAutoAnimate();
+  const [searchs] = useAutoAnimate();
   const [n, setN] = useState(10);
 
   let lastBlog = blogs.slice(0, n);
@@ -24,7 +24,7 @@ function Blogs({ blogs, search }) {
           }}
         />
       </div>
-      <div className=" blogs" ref={parent}>
+      <div className=" blogs" ref={searchs}>
         {lastBlog.map((blog, idx) => (
           <Blog blog={blog} key={idx} />
         ))}

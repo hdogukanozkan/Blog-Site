@@ -10,7 +10,7 @@ import Blog from "./Component/Blog";
 import Footer from "./Component/Footer";
 import { Route, Routes } from "react-router-dom";
 
-const api = "https://react-blog-sites.herokuapp.com/yazi/";
+const api = "https://react-blog-sites.herokuapp.com/yazi";
 
 function App() {
   const [search, setSearch] = useState("");
@@ -36,7 +36,7 @@ function App() {
       date: new Date().toLocaleDateString(),
       yorumlar: [],
     });
-    Axios.get(`api`)
+    Axios.get(`${api}`)
       .then((res) => res.data)
       .then((data) => setBlog(data))
       .catch((err) => console.error(err));
@@ -51,13 +51,13 @@ function App() {
   const deleteBlog = (sil) => {
     const newBlogList = blog.filter((b) => b.id !== sil.id);
 
-    Axios.delete(`$api ${sil.id}`);
+    Axios.delete(`${api}/${sil.id}`);
     setBlog(newBlogList);
   };
 
   const editBlogs = async (id, updatedBlog) => {
-    await Axios.put(`$api ${id}`, updatedBlog);
-    Axios.get(`api`)
+    await Axios.put(`${api}/${id}`, updatedBlog);
+    Axios.get(`${api}`)
       .then((res) => res.data)
       .then((data) => setBlog(data))
       .catch((err) => console.error(err));

@@ -29,7 +29,7 @@ function Details() {
 
     const idmiz = id;
     async function fetchApi() {
-      const response = await Axios.get(`${api} ${idmiz}`);
+      const response = await Axios.get(`${api}/${idmiz}`);
       setBlog({
         date: response.data.date,
         id: response.data.id,
@@ -68,7 +68,7 @@ function Details() {
       yorumlar: [...blog.yorumlar, yorum],
     };
 
-    await Axios.put(`$api ${id}`, newBlog);
+    await Axios.put(`$api/${id}`, newBlog);
   };
 
   const handleYorumYaz = (e) => {

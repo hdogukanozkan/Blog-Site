@@ -1,6 +1,8 @@
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { useNavigate } from "react-router-dom";
 
 function Add({ blogAdd }) {
+  const navigate = useNavigate();
   const handleClick = (e) => {
     e.preventDefault();
     blogAdd(e);
@@ -8,6 +10,10 @@ function Add({ blogAdd }) {
     e.target.blogTitle.value = "";
     e.target.blogImage.value = "";
     e.target.blogText.value = "";
+
+    setTimeout(() => {
+      navigate("/blog/");
+    }, 250);
   };
   const [parent] = useAutoAnimate();
 

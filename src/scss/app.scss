@@ -11,6 +11,15 @@ $koyumaviColor: #0065d7;
   padding: 0;
 }
 
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+}
+
 a {
   text-decoration: none;
   color: $whiteColor;
@@ -307,6 +316,8 @@ textarea {
 
 //ADMİN -PANEL
 .admin-container {
+  width: 100%;
+  min-height: 100vh;
   display: grid;
   grid-template-columns: 230px 1fr;
   .panel {
@@ -481,6 +492,9 @@ textarea {
 }
 
 .edit-new-blog {
+  max-width: 750px;
+  width: 100%;
+
   h1 {
     color: $maviColor;
     text-align: center;

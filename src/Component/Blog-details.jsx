@@ -1,8 +1,11 @@
 import { useParams } from "react-router-dom";
+import Header from "./Header";
+import Footer from "./Footer";
 import { useEffect, useState } from "react";
 import Axios from "axios";
 import { Link } from "react-router-dom";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { SpinnerCircularSplit } from "spinners-react";
 
 const api = "https://react-blog-sites.herokuapp.com/yazi";
 
@@ -15,6 +18,7 @@ function Details() {
     date: "",
     yorumlar: [],
   });
+  const [loading, setLoading] = useState(true);
 
   const [yorum, setYorum] = useState({
     message: "",
@@ -25,6 +29,7 @@ function Details() {
   const [digerBloglar, setDigerBloglar] = useState([]);
 
   useEffect(() => {
+    setLoading(true);
     window.scrollTo(0, 0);
 
     const idmiz = id;
@@ -40,10 +45,13 @@ function Details() {
       });
     }
     fetchApi();
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 550);
   }, [id]);
 
-  useState(() => {
-    window.scrollTo(0, 0);
+  useEffect(() => {
     async function getRandom() {
       const response = await Axios.get(api);
       var shuffled = response.data.sort(function () {
@@ -53,6 +61,7 @@ function Details() {
     }
 
     getRandom();
+    window.scrollTo(0, 0);
   }, []);
 
   let n = 5;
@@ -91,70 +100,89 @@ function Details() {
   };
 
   return (
-    <div className="container blog-page">
-      <h1>{blog.title}</h1>
-      <div className="grid-test">
-        <div className="content">
-          <img src={blog.img} alt={"test"} />
-          <p>{blog.text}</p>
-          <div className="yorumlar">
-            <h2>Yorumlar</h2>
-            <div className="yorum-yaz">
-              <form onSubmit={(e) => handleYorumYaz(e)} className="yorum-text">
-                <textarea
-                  placeholder="Text to message..."
-                  required
-                  id="Yorumumuz"
-                  value={yorum.message}
-                  onChange={(e) => {
-                    setYorum({
-                      message: e.target.value,
-                      date: new Date().toLocaleTimeString(),
-                    });
-                  }}
-                />
-                <button className="yorum-gonder" type="Submit">
-                  Yaz.
-                </button>
-              </form>
-            </div>
-            <div className="yorumlari-listele" ref={parent}>
-              {blog.yorumlar.map((yorum, idx) => (
-                <div className="Message" key={idx}>
-                  <div className="avatar">
-                    <img
-                      src="https://avatars.githubusercontent.com/u/77576605?v=4"
-                      alt="avatar"
-                    />
-                    <h3>Hanifi Doğukan Özkan</h3>
+    <>
+      {loading ? (
+        <SpinnerCircularSplit
+          size={50}
+          thickness={180}
+          speed={100}
+          color="rgba(255, 255, 255, 1)"
+          secondaryColor="rgba(57, 118, 172, 1)"
+        />
+      ) : (
+        <>
+          <Header></Header>
+          <div className="container blog-page">
+            <h1>{blog.title}</h1>
+            <div className="grid-test">
+              <div className="content">
+                <img src={blog.img} alt={"test"} />
+                <p>{blog.text}</p>
+                <div className="yorumlar">
+                  <h2>Yorumlar</h2>
+                  <div className="yorum-yaz">
+                    <form
+                      onSubmit={(e) => handleYorumYaz(e)}
+                      className="yorum-text"
+                    >
+                      <textarea
+                        placeholder="Text to message..."
+                        required
+                        id="Yorumumuz"
+                        value={yorum.message}
+                        onChange={(e) => {
+                          setYorum({
+                            message: e.target.value,
+                            date: new Date().toLocaleTimeString(),
+                          });
+                        }}
+                      />
+                      <button className="yorum-gonder" type="Submit">
+                        Yaz.
+                      </button>
+                    </form>
                   </div>
-                  <p>
-                    {yorum.message}
-                    <span>{yorum.date}</span>
-                  </p>
+                  <div className="yorumlari-listele" ref={parent}>
+                    {blog.yorumlar.map((yorum, idx) => (
+                      <div className="Message" key={idx}>
+                        <div className="avatar">
+                          <img
+                            src="https://avatars.githubusercontent.com/u/77576605?v=4"
+                            alt="avatar"
+                          />
+                          <h3>Hanifi Doğukan Özkan</h3>
+                        </div>
+                        <p>
+                          {yorum.message}
+                          <span>{yorum.date}</span>
+                        </p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        </div>
+              </div>
 
-        <div className="oneriler">
-          {selected.map((populer) => (
-            <div className="blog-container" key={populer.id}>
-              <Link to={`/blog/${populer.id}`}>
-                <img src={populer.img} alt="" />
-              </Link>
-              <div className="box-container">
-                <Link to={`/blog/${populer.id}`}>
-                  <h2>{populer.title}</h2>
-                </Link>
-                <span className="date">{populer.date}</span>
+              <div className="oneriler">
+                {selected.map((populer) => (
+                  <div className="blog-container" key={populer.id}>
+                    <Link to={`/blog/${populer.id}`}>
+                      <img src={populer.img} alt="" />
+                    </Link>
+                    <div className="box-container">
+                      <Link to={`/blog/${populer.id}`}>
+                        <h2>{populer.title}</h2>
+                      </Link>
+                      <span className="date">{populer.date}</span>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-          ))}
-        </div>
-      </div>
-    </div>
+          </div>
+          <Footer></Footer>
+        </>
+      )}
+    </>
   );
 }
 

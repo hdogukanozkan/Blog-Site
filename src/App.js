@@ -9,12 +9,14 @@ import Details from "./Component/Blog-details";
 import Blog from "./Component/Blog";
 import Footer from "./Component/Footer";
 import { Route, Routes } from "react-router-dom";
+import { SpinnerCircularSplit } from "spinners-react";
 
 const api = "https://react-blog-sites.herokuapp.com/yazi";
 
 function App() {
   const [search, setSearch] = useState("");
   const [blog, setBlog] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     Axios.get(api)
@@ -23,6 +25,10 @@ function App() {
       .catch((err) => console.error(err));
 
     console.log("çalıştı mı test 123");
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 250);
   }, []);
 
   /* Burada blog verilerinin güncelliğini sağlıyoruz */
@@ -73,39 +79,72 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
-
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <div className="container AllBlogs">
-              <h1>Yeni Haberler</h1>
-              <div className=" blogs">
-                {lastBlog.map((blog, idx) => (
-                  <Blog blog={blog} key={idx} />
-                ))}
-              </div>
-            </div>
-          }
+      {loading ? (
+        <SpinnerCircularSplit
+          size={50}
+          thickness={180}
+          speed={100}
+          color="rgba(255, 255, 255, 1)"
+          secondaryColor="rgba(57, 118, 172, 1)"
         />
-        <Route
-          path="/blog/"
-          element={<Blogs blogs={filterblog} search={searchFilter} />}
-        />
-        <Route
-          path="/admin/edit/:id"
-          element={<Edit editBlogs={editBlogs} />}
-        />
-        <Route path="/blog/:id" element={<Details />} />
-        <Route
-          path="/admin"
-          element={
-            <Admin deleteBlog={deleteBlog} blogAdd={blogAdd} bloglar={blog} />
-          }
-        />
-      </Routes>
-      <Footer />
+      ) : (
+        <>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <Header />
+                  <div className="container AllBlogs">
+                    <h1>Yeni Haberler</h1>
+                    <div className=" blogs">
+                      {lastBlog.map((blog, idx) => (
+                        <Blog blog={blog} key={idx} />
+                      ))}
+                    </div>
+                  </div>
+                  <Footer />
+                </>
+              }
+            />
+            <Route
+              path="/blog/"
+              element={
+                <>
+                  <Header />
+                  <Blogs blogs={filterblog} search={searchFilter} />
+                  <Footer />
+                </>
+              }
+            />
+            <Route
+              path="/admin/edit/:id"
+              element={
+                <>
+                  <Header />
+                  <Edit editBlogs={editBlogs} />
+                  <Footer />
+                </>
+              }
+            />
+            <Route path="/blog/:id" element={<Details />} />
+            <Route
+              path="/admin"
+              element={
+                <>
+                  <Header />
+                  <Admin
+                    deleteBlog={deleteBlog}
+                    blogAdd={blogAdd}
+                    bloglar={blog}
+                  />
+                  <Footer />
+                </>
+              }
+            />
+          </Routes>
+        </>
+      )}
     </div>
   );
 }

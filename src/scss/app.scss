@@ -665,8 +665,25 @@ Footer {
     font-size: 15px;
   }
 
+  .edit-new-blog form .box input,
+  .edit-new-blog form .box textarea {
+    font-size: 15px;
+  }
+
+  .add-new-blog form .box input,
+  .add-new-blog form .box textarea {
+    font-size: 15px;
+  }
+
+  .edit-new-blog form button {
+    padding: 8px;
+  }
+
   .add-new-blog form .box label {
     font-size: 17px;
+  }
+  .edit {
+    padding: 8px 0;
   }
 
   .add-new-blog form button {

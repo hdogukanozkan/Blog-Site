@@ -10,12 +10,14 @@ import Blog from "./Component/Blog";
 import Footer from "./Component/Footer";
 import { Route, Routes } from "react-router-dom";
 
+const api = "https://react-blog-sites.herokuapp.com/yazi/";
+
 function App() {
   const [search, setSearch] = useState("");
   const [blog, setBlog] = useState([]);
 
   useEffect(() => {
-    Axios.get(`http://localhost:3002/yazi/`)
+    Axios.get(api)
       .then((res) => res.data)
       .then((data) => setBlog(data))
       .catch((err) => console.error(err));
@@ -27,14 +29,14 @@ function App() {
 
   /* Blog ekleme kısmı*/
   const blogAdd = async (e) => {
-    await Axios.post(`http://localhost:3002/yazi`, {
+    await Axios.post(api, {
       title: e.target.blogTitle.value,
       img: e.target.blogImage.value,
       text: e.target.blogText.value,
       date: new Date().toLocaleDateString(),
       yorumlar: [],
     });
-    Axios.get(`http://localhost:3002/yazi/`)
+    Axios.get(`api`)
       .then((res) => res.data)
       .then((data) => setBlog(data))
       .catch((err) => console.error(err));
@@ -49,13 +51,13 @@ function App() {
   const deleteBlog = (sil) => {
     const newBlogList = blog.filter((b) => b.id !== sil.id);
 
-    Axios.delete(`http://localhost:3002/yazi/${sil.id}`);
+    Axios.delete(`$api ${sil.id}`);
     setBlog(newBlogList);
   };
 
   const editBlogs = async (id, updatedBlog) => {
-    await Axios.put(`http://localhost:3002/yazi/${id}`, updatedBlog);
-    Axios.get(`http://localhost:3002/yazi/`)
+    await Axios.put(`$api ${id}`, updatedBlog);
+    Axios.get(`api`)
       .then((res) => res.data)
       .then((data) => setBlog(data))
       .catch((err) => console.error(err));

@@ -29,7 +29,7 @@ function Edit({ editBlogs }) {
 
   useEffect(() => {
     async function fetchApi() {
-      Axios.get(`http://localhost:3002/yazi/${id}`)
+      Axios.get(`https://react-blog-sites.herokuapp.com/yazi/${id}`)
         .then((res) => res.data)
         .then((data) =>
           setEdit({

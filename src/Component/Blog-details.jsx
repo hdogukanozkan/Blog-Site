@@ -4,6 +4,8 @@ import Axios from "axios";
 import { Link } from "react-router-dom";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
+const api = "https://react-blog-sites.herokuapp.com/yazi";
+
 function Details() {
   const [parent] = useAutoAnimate();
   const [blog, setBlog] = useState({
@@ -27,7 +29,7 @@ function Details() {
 
     const idmiz = id;
     async function fetchApi() {
-      const response = await Axios.get(`http://localhost:3002/yazi/${idmiz}`);
+      const response = await Axios.get(`${api} ${idmiz}`);
       setBlog({
         date: response.data.date,
         id: response.data.id,
@@ -43,7 +45,7 @@ function Details() {
   useState(() => {
     window.scrollTo(0, 0);
     async function getRandom() {
-      const response = await Axios.get("http://localhost:3002/yazi/");
+      const response = await Axios.get(api);
       var shuffled = response.data.sort(function () {
         return 0.5 - Math.random();
       });
@@ -66,7 +68,7 @@ function Details() {
       yorumlar: [...blog.yorumlar, yorum],
     };
 
-    await Axios.put(`http://localhost:3002/yazi/${id}`, newBlog);
+    await Axios.put(`$api ${id}`, newBlog);
   };
 
   const handleYorumYaz = (e) => {

@@ -5,7 +5,16 @@ function Header() {
     <header className="container header">
       <h1>HDO</h1>
 
-      <div>
+      <div
+        className="menuToggle"
+        onClick={() => {
+          document.getElementById("menu").classList.toggle("active");
+        }}
+      >
+        Btn
+      </div>
+
+      <div className="menu" id="menu">
         <Link to={`/`}>
           <span>Home</span>
         </Link>
@@ -14,7 +23,7 @@ function Header() {
         </Link>
 
         <Link to={`/admin/`}>
-          <span>Admin Panel</span>
+          <span>Admin-Panel</span>
         </Link>
       </div>
     </header>

@@ -24,6 +24,9 @@ a {
   text-decoration: none;
   color: $whiteColor;
 }
+a:active {
+  color: $maviColor;
+}
 
 body {
   color: $whiteColor;

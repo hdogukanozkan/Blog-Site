@@ -135,7 +135,7 @@ textarea {
   .blogs {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(330px, 420px));
+    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
     margin: 2rem auto;
     justify-content: center;
     gap: 1rem;
@@ -594,6 +594,52 @@ Footer {
   .searchbar {
     margin: 0;
     width: 100%;
+  }
+
+  .AllBlogs .blogs {
+    gap: 0.3rem;
+  }
+
+  .AllBlogs .blogs .blog-container .box-container {
+    padding: 5px 0;
+  }
+  .AllBlogs .blogs {
+    margin: 0.5rem auto;
+  }
+
+  .container.AllBlogs h1 {
+    font-size: 1.3rem;
+  }
+
+  .AllBlogs .blogs .blog-container .box-container h2 {
+    font-size: 21px;
+  }
+
+  .archive h2 {
+    font-size: 24px;
+  }
+
+  .blog-page h1 {
+    font-size: 1.3rem;
+  }
+  .blog-page .content .yorumlar .yorum-yaz .yorum-text textarea {
+    font-size: 1rem;
+  }
+  .blog-page .content .yorumlar .yorum-yaz .yorum-text .yorum-gonder {
+    font-size: 16px;
+    padding: 10px 30px;
+  }
+
+  .edit-new-blog form .box textarea,
+  .edit-new-blog form .box input,
+  .edit-new-blog form .box textarea {
+    font-size: 15px;
+  }
+
+  .add-new-blog form .box input,
+  .add-new-blog form .box textarea,
+  .add-new-blog form .box textarea {
+    font-size: 15px;
   }
 }
 

@@ -608,11 +608,16 @@ Footer {
   }
 
   .container.AllBlogs h1 {
-    font-size: 1.3rem;
+    font-size: 1.6rem;
   }
 
   .AllBlogs .blogs .blog-container .box-container h2 {
     font-size: 21px;
+  }
+
+  .blog-page .content .yorumlar h2 {
+    font-size: 1.8rem;
+    margin: 0.5rem;
   }
 
   .archive h2 {
@@ -622,9 +627,28 @@ Footer {
   .blog-page h1 {
     font-size: 1.3rem;
   }
+
   .blog-page .content .yorumlar .yorum-yaz .yorum-text textarea {
-    font-size: 1rem;
+    font-size: 15px;
+    padding: 0.7rem;
   }
+
+  .edit-new-blog form .box label {
+    font-size: 17px;
+  }
+
+  .edit-new-blog h1 {
+    margin-top: 0;
+  }
+
+  .searchbar {
+    font-size: 15px;
+  }
+
+  .blog-page .content .yorumlar .yorum-yaz .yorum-text {
+    margin-bottom: 1rem;
+  }
+
   .blog-page .content .yorumlar .yorum-yaz .yorum-text .yorum-gonder {
     font-size: 16px;
     padding: 10px 30px;
@@ -637,9 +661,17 @@ Footer {
   }
 
   .add-new-blog form .box input,
-  .add-new-blog form .box textarea,
   .add-new-blog form .box textarea {
     font-size: 15px;
+  }
+
+  .add-new-blog form .box label {
+    font-size: 17px;
+  }
+
+  .add-new-blog form button {
+    padding: 8px;
+    font-size: 16px;
   }
 }
 

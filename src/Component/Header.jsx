@@ -11,7 +11,7 @@ function Header() {
           document.getElementById("menu").classList.toggle("active");
         }}
       >
-        Btn
+        <i class="fa fa-bars" aria-hidden="true"></i>
       </div>
 
       <div className="menu" id="menu">

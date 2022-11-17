@@ -12,7 +12,7 @@ function Header() {
           document.getElementById("menu").classList.toggle("active");
         }}
       >
-        <i class="fa fa-bars" aria-hidden="true"></i>
+        <i className="fa fa-bars" aria-hidden="true"></i>
       </div>
 
       <div className="menu" id="menu">

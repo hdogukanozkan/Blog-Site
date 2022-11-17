@@ -3,20 +3,22 @@ import { useParams, useNavigate } from "react-router-dom";
 import Axios from "axios";
 
 function Edit({ editBlogs }) {
+  const { id } = useParams();
   const navigate = useNavigate();
   const [edit, setEdit] = useState({
     title: "",
     img: "",
     text: "",
   });
-  // const [newEdit, setNewEdit] = useState();
 
+  //Burada ise verileri submit ile güncelliyoruz
   const handleClick = (e) => {
     e.preventDefault();
     editBlogs(id, edit);
     navigate("/admin/");
   };
 
+  //Yaptığımız değişiklikleri otomatik olarka state'te depoluyoruz
   const handleChange = (e) => {
     console.log(e.target.name);
     setEdit((route) => ({
@@ -25,8 +27,7 @@ function Edit({ editBlogs }) {
     }));
   };
 
-  const { id } = useParams();
-
+  //Sayfa yüklenince url id parametresiyle veriyi çekiyoruz ve state ile yerine yerleştiriyoruz
   useEffect(() => {
     async function fetchApi() {
       Axios.get(`https://react-blog-sites.herokuapp.com/yazi/${id}`)
@@ -47,12 +48,6 @@ function Edit({ editBlogs }) {
     fetchApi();
   }, [id]);
 
-  /*   
- useEffect(async () => {
-    
-
-  }, []);
-   */
   return (
     <div className="edit-new-blog">
       <h1>Blog Editlesene kardeş. </h1>

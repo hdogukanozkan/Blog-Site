@@ -11,15 +11,6 @@ $koyumaviColor: #0065d7;
   padding: 0;
 }
 
-.App {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  min-height: 100vh;
-}
-
 a {
   text-decoration: none;
   color: $whiteColor;
@@ -34,7 +25,29 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
-// navbar Header kısmı
+textarea {
+  resize: none;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.searchbar {
+  border: none;
+  outline: none;
+  font-size: 17px;
+  padding: 12px 12px;
+  max-width: 500px;
+  width: 350px;
+  border-radius: 5px;
+  margin: 0 1rem;
+}
 
 .container {
   max-width: 1450px;
@@ -49,20 +62,9 @@ body {
   }
 }
 
-textarea {
-  resize: none;
-}
+// ---------------------------------------------------------------------------------------------
 
-.searchbar {
-  border: none;
-  outline: none;
-  font-size: 17px;
-  padding: 12px 12px;
-  max-width: 500px;
-  width: 350px;
-  border-radius: 5px;
-  margin: 0 1rem;
-}
+// navbar Header kısmı
 
 .header {
   text-align: center;
@@ -72,6 +74,9 @@ textarea {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  .menuToggle {
+    display: none;
+  }
   h1 {
     border: none;
     padding: 0;
@@ -359,7 +364,7 @@ textarea {
   }
 }
 
-// ADD NEW BLOG
+// ADMİN - ADD NEW BLOG
 .add-new-blog {
   display: none;
   h1 {
@@ -426,11 +431,10 @@ textarea {
   &:active {
     transform: scale(0.95);
   }
-}
-
-.edit:hover {
-  background-color: rgb(255, 209, 2);
-  box-shadow: 0 0 10px 4px rgba(255, 209, 2, 0.2);
+  &:hover {
+    background-color: rgb(255, 209, 2);
+    box-shadow: 0 0 10px 4px rgba(255, 209, 2, 0.2);
+  }
 }
 
 .archive {
@@ -545,16 +549,13 @@ textarea {
   }
 }
 
+// FOOTER BAR
 Footer {
   padding: 5rem 0 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 18px;
-}
-
-.header .menuToggle {
-  display: none;
 }
 
 @media only screen and (max-width: 481px) {

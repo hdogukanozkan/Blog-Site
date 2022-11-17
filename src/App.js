@@ -18,6 +18,7 @@ function App() {
   const [blog, setBlog] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Sayfa yüklendiğinde api'dan verileri çekiyoruz ve state içine aktarıyoruz.
   useEffect(() => {
     Axios.get(api)
       .then((res) => res.data)
@@ -30,8 +31,6 @@ function App() {
       setLoading(false);
     }, 250);
   }, []);
-
-  /* Burada blog verilerinin güncelliğini sağlıyoruz */
 
   /* Blog ekleme kısmı*/
   const blogAdd = async (e) => {
@@ -61,6 +60,7 @@ function App() {
     setBlog(newBlogList);
   };
 
+  // Blogları güncelliyoruz
   const editBlogs = async (id, updatedBlog) => {
     await Axios.put(`${api}/${id}`, updatedBlog);
     Axios.get(`${api}`)
@@ -69,12 +69,14 @@ function App() {
       .catch((err) => console.error(err));
   };
 
+  // Blogları filtreleme ve sıralama işlemlerini gerçekleştiriyoruz
   let filterblog = blog
     .sort((a, b) => (a.id > b.id ? -1 : b.id > a.id ? 1 : 0))
     .filter((yazi) => {
       return yazi.title.toLowerCase().includes(search);
     });
 
+  //Ana sayfada 6 tane Blog gösterilmesini istiyoruz.
   let lastBlog = blog.slice(0, 6);
 
   return (

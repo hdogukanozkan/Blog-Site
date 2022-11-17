@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 
+//Header navbar sayfası.
 function Header() {
   return (
     <header className="container header">

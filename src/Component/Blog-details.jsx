@@ -19,15 +19,14 @@ function Details() {
     yorumlar: [],
   });
   const [loading, setLoading] = useState(true);
-
   const [yorum, setYorum] = useState({
     message: "",
     date: "",
   });
   const { id } = useParams();
-
   const [digerBloglar, setDigerBloglar] = useState([]);
 
+  // id her değiştiğinde  çektiğimiz içeriği güncelliyoruz.
   useEffect(() => {
     setLoading(true);
     window.scrollTo(0, 0);
@@ -51,6 +50,7 @@ function Details() {
     }, 550);
   }, [id]);
 
+  // Burada başlangıçta random olarak 5 tane blog seçiyoruz. Önerilenler kısmı için.
   useEffect(() => {
     async function getRandom() {
       const response = await Axios.get(api);
@@ -64,10 +64,10 @@ function Details() {
     window.scrollTo(0, 0);
   }, []);
 
-  let n = 5;
+  //5 tane önerileni burada yansıtıyoruz
+  var selected = digerBloglar.slice(0, 5);
 
-  var selected = digerBloglar.slice(0, n);
-
+  // Burada girilen yorumları editBlogs güncelliyoruz
   const editBlogs = async (yorum) => {
     const newBlog = {
       title: blog.title,
@@ -80,6 +80,7 @@ function Details() {
     await Axios.put(`$api/${id}`, newBlog);
   };
 
+  //Burada yorumların change'ini kontrol edip verileri tutuyoruz.
   const handleYorumYaz = (e) => {
     e.preventDefault();
     setBlog({

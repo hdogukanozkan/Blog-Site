@@ -6,6 +6,7 @@ function Blogs({ blogs, search }) {
   const [searchs] = useAutoAnimate();
   const [n, setN] = useState(10);
 
+  // Burada gösterilecek blog sayısını n kadar diyoruz ve daha fazlası dediğimiz n+10 diyoruz.
   let lastBlog = blogs.slice(0, n);
 
   useEffect(() => {

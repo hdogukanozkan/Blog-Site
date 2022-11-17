@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 
 function Add({ blogAdd }) {
   const navigate = useNavigate();
+  const [parent] = useAutoAnimate();
+
+  //Burada aldığımız verileri gönderiyoruz
   const handleClick = (e) => {
     e.preventDefault();
     blogAdd(e);
@@ -15,7 +18,6 @@ function Add({ blogAdd }) {
       navigate("/blog/");
     }, 250);
   };
-  const [parent] = useAutoAnimate();
 
   return (
     <div className="add-new-blog">

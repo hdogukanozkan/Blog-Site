@@ -30,7 +30,7 @@ function Edit({ editBlogs }) {
   //Sayfa yüklenince url id parametresiyle veriyi çekiyoruz ve state ile yerine yerleştiriyoruz
   useEffect(() => {
     async function fetchApi() {
-      Axios.get(`https://react-blog-sites.herokuapp.com/yazi/${id}`)
+      Axios.get(`https://blogs-api-production-2ef0.up.railway.app/yazi/${id}`)
         .then((res) => res.data)
         .then((data) =>
           setEdit({

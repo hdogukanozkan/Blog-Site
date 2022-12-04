@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { SpinnerCircularSplit } from "spinners-react";
 
-const api = "https://react-blog-sites.herokuapp.com/yazi";
+const api = "https://blogs-api-production-2ef0.up.railway.app/yazi";
 
 function Details() {
   const [parent] = useAutoAnimate();

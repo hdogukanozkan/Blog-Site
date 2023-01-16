@@ -11,7 +11,8 @@ import Footer from "./Component/Footer";
 import { Route, Routes } from "react-router-dom";
 import { SpinnerCircularSplit } from "spinners-react";
 
-const api = "https://blogs-api-production-2ef0.up.railway.app/yazi";
+const api = "http://localhost:3002/yazi";
+//https://blogs-api-production-2ef0.up.railway.app/yazi
 
 function App() {
   const [search, setSearch] = useState("");
